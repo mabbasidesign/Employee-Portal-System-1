@@ -225,6 +225,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EmployeeEntity.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\EmployeeViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Site.cs">
