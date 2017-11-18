@@ -21,7 +21,15 @@
             </div>
             <div class="modal-body">
                 <form>
+
                     @Html.DropDownListFor(m => m.EmployeeId, ViewBag.DepartmentList as SelectList, "--Select--", new { @class="form-control"})
+
+                    @Html.TextBoxFor(m => m.Name, new { @class="form-control", placeholder = "Name"})
+
+                    @Html.TextBoxFor(m => m.Address, new { @class = "form-control", placeholder = "Adress" })
+
+                    @Html.TextBoxFor(m => m.SiteName, new { @class = "form-control", placeholder = "SiteName" })
+
                 </form>
             </div>
             <div class="modal-footer">
