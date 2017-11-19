@@ -21,10 +21,17 @@ namespace Employee_Portal_System_1.Controllers
             em.Name = model.Name;
             em.Address = model.Address;
             em.DepartmentId = model.DepartmentId;
-
             db.Employees.Add(em);
             //db.SaveChanges();
 
+            var latestEmpId = em.EmployeeId;
+            
+            var site = new Site();
+            site.SiteName = model.SiteName;
+            db.Sites.Add(site);
+            //db.SaveChanges();
+
+            site.EmployeeId = latestEmpId;
 
             return View(model);
         }

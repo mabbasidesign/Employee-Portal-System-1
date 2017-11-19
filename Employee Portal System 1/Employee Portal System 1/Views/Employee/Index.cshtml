@@ -7,12 +7,21 @@
 
 @{
     ViewBag.Title = "Index";
+    Layout = null;
 }
 
-<h2>Index</h2>
+<div class="container" style="width:50%;margin-top:40px;">
 
+    <div class="page-header">
+        <div class="alert alert-info"><h4 style="text-align:center;">Employees Portal System</h4></div>
+    </div>
 <!-- Trigger the modal with a button -->
-<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+    <div class="container" style="width:30%;">
+    <button type="button" class="btn btn-info btn-lg btn-block" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-plus"></span> Add</button>
+    <button type="button" class="btn btn-info btn-lg btn-block" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-trash"></span> Remove</button>
+    <button type="button" class="btn btn-info btn-lg btn-block" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-pencil"></span> Edit</button>
+    <button type="button" class="btn btn-info btn-lg btn-block" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-th"></span> Display</button>
+    </div>
 
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
@@ -33,7 +42,7 @@
 
                     @Html.TextBoxFor(m => m.Address, new { @class = "form-control", placeholder = "Adress" })
 
-                    @*@Html.TextBoxFor(m => m.SiteName, new { @class = "form-control", placeholder = "SiteName" })*@
+                    @Html.TextBoxFor(m => m.SiteName, new { @class = "form-control", placeholder = "SiteName" })
 
                 </form>
             </div>
@@ -44,6 +53,7 @@
         </div>
 
     </div>
+</div>
 </div>
 
 
