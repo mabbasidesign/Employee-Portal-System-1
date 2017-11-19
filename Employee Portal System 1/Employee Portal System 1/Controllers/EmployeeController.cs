@@ -17,17 +17,16 @@ namespace Employee_Portal_System_1.Controllers
             ViewBag.DepartmentList = new SelectList(depList, "DepartmentId", "DepartmentName");
 
             var em = new Employee();
-            em.EmployeeId = model.EmployeeId;
+            //em.EmployeeId = model.EmployeeId;
             em.Name = model.Name;
             em.Address = model.Address;
             em.DepartmentId = model.DepartmentId;
 
-            var emList = db.Employees.Add(em);
-            db.SaveChanges();
+            db.Employees.Add(em);
+            //db.SaveChanges();
 
 
-
-            return View();
+            return View(model);
         }
     }
 }

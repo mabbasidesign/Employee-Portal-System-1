@@ -1,5 +1,10 @@
 ﻿@model Employee_Portal_System_1.Models.EmployeeViewModel
 
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<link href="~/Content/Site.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap.min.js"></script>
+
 @{
     ViewBag.Title = "Index";
 }
@@ -20,7 +25,7 @@
                 <h4 class="modal-title">Modal Header</h4>
             </div>
             <div class="modal-body">
-                <form>
+                <form id="myForm">
 
                     @Html.DropDownListFor(m => m.EmployeeId, ViewBag.DepartmentList as SelectList, "--Select--", new { @class="form-control"})
 
@@ -28,14 +33,39 @@
 
                     @Html.TextBoxFor(m => m.Address, new { @class = "form-control", placeholder = "Adress" })
 
-                    @Html.TextBoxFor(m => m.SiteName, new { @class = "form-control", placeholder = "SiteName" })
+                    @*@Html.TextBoxFor(m => m.SiteName, new { @class = "form-control", placeholder = "SiteName" })*@
 
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <input type="reset" class="btn btn-success" value="submit" id="btnSubmit" />
             </div>
         </div>
 
     </div>
 </div>
+
+
+<script>
+
+    $(document).ready(function () {
+
+        $("#btnSubmit").click(function () {
+
+            var data = $("#myForm").serialize();
+
+            $.ajax({
+                type: "POST",
+                url: "/Employee/Index",
+                data: data,
+                success: function (response) {
+                    alert("You Done.");
+                }
+            });
+
+        });
+
+    });
+
+</script>
