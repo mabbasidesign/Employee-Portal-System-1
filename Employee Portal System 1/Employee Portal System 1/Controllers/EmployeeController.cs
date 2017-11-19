@@ -35,5 +35,23 @@ namespace Employee_Portal_System_1.Controllers
 
             return View(model);
         }
+
+        public JsonResult DeleteEmployee(int id)
+        {
+            var result = false;
+            var db = new EmEntities();
+            var em = db.Employees.SingleOrDefault(e => e.EmployeeId == id && e.IsDeleted == false);
+
+            if(em != null)
+            {
+                em.IsDeleted = true;
+                result = true;
+                db.SaveChanges();
+            }
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+
     }
 }
