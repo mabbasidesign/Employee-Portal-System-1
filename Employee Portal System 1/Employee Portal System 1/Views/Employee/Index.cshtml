@@ -19,9 +19,9 @@
 <!-- Trigger the modal with a button -->
     <div class="container" style="width:30%;">
     <button type="button" class="btn btn-info btn-lg btn-block" data-toggle="modal" data-target="#create"><span class="glyphicon glyphicon-plus"></span> Add</button>
-    @*<button type="button" class="btn btn-info btn-lg btn-block" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-trash"></span> Remove</button>
-    <button type="button" class="btn btn-info btn-lg btn-block" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-pencil"></span> Edit</button>*@
-    <button type="button" class="btn btn-info btn-lg btn-block" data-toggle="modal" data-target="#display"><span class="glyphicon glyphicon-th"></span> Display</button>
+    <button id="hiddenRecord" type="button" class="btn btn-info btn-lg btn-block"><span class="glyphicon glyphicon-trash"></span> Hiding Reords</button>
+    <button id="displarRecord" type="button" class="btn btn-info btn-lg btn-block"><span class="glyphicon glyphicon-pencil"></span> Display</button>
+    <button type="button" class="btn btn-info btn-lg btn-block" data-toggle="modal" data-target="#display"><span class="glyphicon glyphicon-th"></span> Display in Model</button>
     </div>
 
 <!-- Create Modal -->
@@ -56,9 +56,6 @@
     </div>
 </div>
 </div>
-
-
-
 
 
 <!-- Display Modal -->
@@ -109,8 +106,33 @@
 
 
 
+<!-- Display Employees in pages -->
 
+<div id="employeeRecord" class="container" style="margin-top:50px;width:55%;display:none">
+    <table class="table table-responsive">
+        <tr>
+            <td>Name</td>
+            <td>Address</td>
+            <td>Department</td>
+            <td></td>
+        </tr>
+        <tbody>
+            @if (ViewBag.EmployeeList != null)
+            {
+                foreach (var item in ViewBag.EmployeeList)
+                {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>@item.Address</td>
+                        <td>@item.DepartmentName</td>
+                        <td><a href="#" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></a></td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
 
+</div>
 
 
 <script>
@@ -147,6 +169,18 @@
             });
         });
 
+    });
+    
+    $(document).ready(function () {
+        $("#displarRecord").click(function () {
+            $("#employeeRecord").css('display', 'block');
+        })
+    });
+
+    $(document).ready(function () {
+        $("#hiddenRecord").click(function () {
+            $("#employeeRecord").css('display', 'none');
+        })
     });
 
 </script>

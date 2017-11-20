@@ -30,8 +30,20 @@ namespace Employee_Portal_System_1.Controllers
             site.SiteName = model.SiteName;
             db.Sites.Add(site);
             //db.SaveChanges();
-
             site.EmployeeId = latestEmpId;
+
+            var empList = db.Employees
+                .Where(e => e.IsDeleted == false)
+                .Select(x => new EmployeeViewModel
+                {
+                    EmployeeId = x.EmployeeId,
+                    Name = x.Name,
+                    Address = x.Address,
+                    DepartmentName = x.Department.DepartmentName,
+                    IsDeleted = x.IsDeleted,
+                }).ToList();
+
+            ViewBag.EmployeeList = empList;
 
             return View(model);
         }
