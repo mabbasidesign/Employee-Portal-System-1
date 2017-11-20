@@ -1,0 +1,40 @@
+﻿
+
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<link href="~/Content/Site.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap.min.js"></script>
+
+@{
+    ViewBag.Title = "DisplayEmployees";
+}
+
+<h2>DisplayEmployees</h2>
+
+
+<div class="container" style="width:60%;">
+    <table class="table table-responsive">
+        <tr>
+            <td>Name</td>
+            <td>Address</td>
+            <td>Department</td>
+            <td></td>
+        </tr>
+        <tbody>
+            @if (ViewBag.EmployeeList != null)
+            {
+                foreach (var item in ViewBag.EmployeeList)
+                {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>@item.Address</td>
+                        <td>@item.DepartmentName</td>
+                        <td><a href="#" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></a></td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+
+

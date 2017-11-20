@@ -18,22 +18,23 @@
 
 <!-- Trigger the modal with a button -->
     <div class="container" style="width:30%;">
-    <button type="button" class="btn btn-info btn-lg btn-block" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-plus"></span> Add</button>
-    <button type="button" class="btn btn-info btn-lg btn-block" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-trash"></span> Remove</button>
-    <button type="button" class="btn btn-info btn-lg btn-block" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-pencil"></span> Edit</button>
-    <button type="button" class="btn btn-info btn-lg btn-block" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-th"></span> Display</button>
+    <button type="button" class="btn btn-info btn-lg btn-block" data-toggle="modal" data-target="#create"><span class="glyphicon glyphicon-plus"></span> Add</button>
+    @*<button type="button" class="btn btn-info btn-lg btn-block" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-trash"></span> Remove</button>
+    <button type="button" class="btn btn-info btn-lg btn-block" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-pencil"></span> Edit</button>*@
+    <button type="button" class="btn btn-info btn-lg btn-block" data-toggle="modal" data-target="#display"><span class="glyphicon glyphicon-th"></span> Display</button>
     </div>
 
-<!-- Add Modal -->
-<div id="myModal" class="modal fade" role="dialog">
+<!-- Create Modal -->
+<div id="create" class="modal fade" role="dialog">
     <div class="modal-dialog">
 
-        <!-- Modal content-->
+        <!-- Modal Content Create-->
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">Modal Header</h4>
             </div>
+
             <div class="modal-body">
                 <form id="myForm">
 
@@ -52,10 +53,64 @@
                 <input type="reset" class="btn btn-success" value="submit" id="btnSubmit" />
             </div>
         </div>
-
     </div>
 </div>
 </div>
+
+
+
+
+
+<!-- Display Modal -->
+<div id="display" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal Content Display-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Modal Header</h4>
+            </div>
+
+            <div class="modal-body" id="DisplayEmployee">
+                <div class="container" style="width:60%;">
+                    <table class="table table-responsive">
+                        <tr>
+                            <td>Name</td>
+                            <td>Address</td>
+                            <td>Department</td>
+                            <td></td>
+                        </tr>
+                        <tbody>
+                            @if (ViewBag.EmployeeList != null)
+            {
+                foreach (var item in ViewBag.EmployeeList)
+                {
+                                    <tr>
+                                        <td>@item.Name</td>
+                                        <td>@item.Address</td>
+                                        <td>@item.DepartmentName</td>
+                                        <td><a href="#" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></a></td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
 
 
 <script>
@@ -75,6 +130,21 @@
                 }
             });
 
+        });
+
+    });
+
+    $(document).ready(function () {
+
+        $("#ShowDelete").click(function () {
+
+            $.ajax({
+                type: "POST",
+                url: "/DeleteEmployee/DisplayEmployees",
+                success: function (response) {
+                    $("#DisplayEmployee").html(response)
+                }
+            });
         });
 
     });

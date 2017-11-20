@@ -46,5 +46,25 @@ namespace Employee_Portal_System_1.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult DisplayEmployees()
+        {
+            var db = new EmEntities();
+
+            var empList = db.Employees
+                .Where(e => e.IsDeleted == false)
+                .Select(x => new EmployeeViewModel
+                {
+                    EmployeeId = x.EmployeeId,
+                    Name = x.Name,
+                    Address = x.Address,
+                    DepartmentName = x.Department.DepartmentName,
+                    IsDeleted = x.IsDeleted,
+                }).ToList();
+
+            ViewBag.EmployeeList = empList;
+
+            return PartialView("DisplayPartial");
+        }
+
     }
 }

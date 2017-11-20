@@ -314,6 +314,7 @@
     <Content Include="Views\Employee\Index.cshtml" />
     <Content Include="Views\Employee\DeleteEmployee.cshtml" />
     <Content Include="Views\DeleteEmployee\Index.cshtml" />
+    <Content Include="Views\DeleteEmployee\DisplayPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
